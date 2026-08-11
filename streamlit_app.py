@@ -180,7 +180,7 @@ with st.sidebar:
         <br><br>
 
         <b>Programme:</b><br>
-        MSc International Health Services Management
+        MSc Data Science and Big Data Analytics
         <br><br>
 
         <b>Models:</b><br>
