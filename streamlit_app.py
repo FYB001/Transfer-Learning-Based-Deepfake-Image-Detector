@@ -21,215 +21,178 @@ st.set_page_config(
 # CLEAN BLUE AND WHITE DESIGN
 # ============================================================
 
-st.markdown(
-    """
-    <style>
+st.markdown("""
+<style>
 
-    /* ================================
-       MAIN APPLICATION
-       ================================ */
+/* MAIN APPLICATION */
+.stApp { background-color: #f7f9fc; }
+[data-testid="stAppViewContainer"] { background-color: #f7f9fc; }
+[data-testid="stHeader"] { background-color: #0b1f33; }
 
-    .stApp {
-        background-color: #f7f9fc;
-    }
+.block-container {
+    max-width: 950px;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem;
+}
 
-    [data-testid="stAppViewContainer"] {
-        background-color: #f7f9fc;
-    }
+/* SIDEBAR */
+[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid #dce6f0;
+}
+[data-testid="stSidebar"] * { color: #173f67; }
+[data-testid="stSidebar"] hr { border-color: #dce6f0; margin: 0.6rem 0; }
 
-    [data-testid="stHeader"] {
-        background-color: #0b1f33;
-    }
+.sidebar-heading {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #6b8cae !important;
+    margin-top: 18px;
+    margin-bottom: 4px;
+}
+.sidebar-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #173f67 !important;
+    margin-bottom: 2px;
+    line-height: 1.4;
+}
+.sidebar-model-list {
+    font-size: 14px;
+    color: #34495e !important;
+    line-height: 1.9;
+    margin-bottom: 4px;
+}
 
-    /* Main content width and spacing */
-    .block-container {
-        max-width: 950px;
-        padding-top: 2.5rem;
-        padding-bottom: 3rem;
-    }
+/* TITLES */
+h1 { color: #173f67 !important; font-weight: 700 !important; }
+h2, h3 { color: #173f67 !important; }
 
+/* DESCRIPTION */
+.description {
+    text-align: center;
+    color: #52657a;
+    font-size: 16px;
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
 
-    /* ================================
-       SIDEBAR
-       ================================ */
+/* PROJECT BOX */
+.project-box {
+    background-color: #eaf3ff;
+    border-left: 5px solid #2d8cff;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 28px;
+}
+.project-title {
+    color: #173f67;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.project-topic {
+    color: #34495e;
+    font-size: 15px;
+    line-height: 1.55;
+}
 
-    [data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1px solid #dce6f0;
-    }
+/* SECTION LABEL */
+.section-label {
+    color: #173f67;
+    font-size: 20px;
+    font-weight: 700;
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
 
-    [data-testid="stSidebar"] * {
-        color: #173f67;
-    }
+/* BUTTON */
+div.stButton > button {
+    background-color: #2d8cff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.15s ease-in-out;
+}
+div.stButton > button:hover { background-color: #176fc1; color: white; }
 
-    [data-testid="stSidebar"] hr {
-        border-color: #dce6f0;
-    }
+/* RESULT AREA */
+.result-box {
+    background-color: #ffffff;
+    border: 1px solid #dce6f0;
+    border-radius: 12px;
+    padding: 25px;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(23, 63, 103, 0.06);
+}
+.result-title {
+    color: #173f67;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    text-align: center;
+}
+.prediction {
+    text-align: center;
+    color: #173f67;
+    font-size: 30px;
+    font-weight: 700;
+    margin-top: 10px;
+}
+.prediction-text {
+    text-align: center;
+    color: #52657a;
+    font-size: 16px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+.prediction-percentage {
+    text-align: center;
+    color: #173f67;
+    font-size: 32px;
+    font-weight: 700;
+}
+.prediction-label {
+    text-align: center;
+    color: #718096;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+.level {
+    text-align: center;
+    color: #34495e;
+    font-size: 17px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+.badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+}
+.badge-real { background-color: #e3f9ec; color: #1a8a4c; }
+.badge-fake { background-color: #fde8e8; color: #c0392b; }
 
-
-    /* ================================
-       TITLES
-       ================================ */
-
-    h1 {
-        color: #173f67 !important;
-        font-weight: 700 !important;
-    }
-
-    h2, h3 {
-        color: #173f67 !important;
-    }
-
-
-    /* ================================
-       DESCRIPTION
-       ================================ */
-
-    .description {
-        text-align: center;
-        color: #52657a;
-        font-size: 16px;
-        margin-top: -10px;
-        margin-bottom: 30px;
-    }
-
-
-    /* ================================
-       PROJECT BOX
-       ================================ */
-
-    .project-box {
-        background-color: #eaf3ff;
-        border-left: 5px solid #2d8cff;
-        border-radius: 10px;
-        padding: 18px 22px;
-        margin-bottom: 28px;
-    }
-
-    .project-title {
-        color: #173f67;
-        font-size: 17px;
-        font-weight: 700;
-        margin-bottom: 8px;
-    }
-
-    .project-topic {
-        color: #34495e;
-        font-size: 15px;
-        line-height: 1.55;
-    }
-
-
-    /* ================================
-       UPLOADED IMAGE AREA
-       ================================ */
-
-    .image-title {
-        color: #173f67;
-        font-size: 20px;
-        font-weight: 700;
-        margin-top: 25px;
-        margin-bottom: 10px;
-    }
-
-
-    /* ================================
-       BUTTON
-       ================================ */
-
-    div.stButton > button {
-        background-color: #2d8cff;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        height: 48px;
-        font-size: 16px;
-        font-weight: 600;
-    }
-
-    div.stButton > button:hover {
-        background-color: #176fc1;
-        color: white;
-    }
-
-
-    /* ================================
-       RESULT AREA
-       ================================ */
-
-    .result-box {
-        background-color: #ffffff;
-        border: 1px solid #dce6f0;
-        border-radius: 12px;
-        padding: 25px;
-        margin-top: 25px;
-        margin-bottom: 20px;
-        box-shadow: 0 2px 8px rgba(23, 63, 103, 0.06);
-    }
-
-    .result-title {
-        color: #173f67;
-        font-size: 20px;
-        font-weight: 700;
-        margin-bottom: 18px;
-    }
-
-    .prediction {
-        text-align: center;
-        color: #173f67;
-        font-size: 30px;
-        font-weight: 700;
-        margin-top: 10px;
-    }
-
-    .prediction-text {
-        text-align: center;
-        color: #52657a;
-        font-size: 16px;
-        margin-top: 8px;
-        margin-bottom: 15px;
-    }
-
-    .prediction-percentage {
-        text-align: center;
-        color: #173f67;
-        font-size: 32px;
-        font-weight: 700;
-    }
-
-    .prediction-label {
-        text-align: center;
-        color: #718096;
-        font-size: 14px;
-        margin-bottom: 15px;
-    }
-
-    .level {
-        text-align: center;
-        color: #34495e;
-        font-size: 17px;
-        margin-top: 8px;
-        margin-bottom: 15px;
-    }
-
-
-    /* ================================
-       FOOTER
-       ================================ */
-
-    .footer {
-        text-align: center;
-        color: #7a8795;
-        font-size: 13px;
-        margin-top: 35px;
-        padding-top: 18px;
-        border-top: 1px solid #dce6f0;
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+/* FOOTER */
+.footer {
+    text-align: center;
+    color: #7a8795;
+    font-size: 13px;
+    margin-top: 35px;
+    padding-top: 18px;
+    border-top: 1px solid #dce6f0;
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 # ============================================================
@@ -237,34 +200,41 @@ st.markdown(
 # ============================================================
 
 with st.sidebar:
-
     st.markdown("## 🔍 Deepfake Detector")
+    st.divider()
+
+    st.markdown('<div class="sidebar-heading">Student</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-value">Fatmata Yealie Bangura</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="sidebar-heading">University</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-value">Wrexham University</div>', unsafe_allow_html=True)
+
+    st.markdown('<div class="sidebar-heading">Programme</div>', unsafe_allow_html=True)
+    st.markdown('<div class="sidebar-value">MSc Data Science and Big Data Analytics</div>', unsafe_allow_html=True)
 
     st.divider()
 
-    st.markdown("**Student**")
-    st.write("Fatmata Yealie Bangura")
-
-    st.markdown("**University**")
-    st.write("Wrexham University")
-
-    st.markdown("**Programme**")
-    st.write("MSc Data Science and Big Data Analytics")
-
-    st.markdown("**Models**")
-    st.write(
-        "VGG16\n\n"
-        "ResNet50\n\n"
-        "MobileNetV2\n\n"
-        "EfficientNetB0\n\n"
-        "Xception"
+    st.markdown('<div class="sidebar-heading">Models Compared</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="sidebar-model-list">'
+        '• VGG16<br>'
+        '• ResNet50<br>'
+        '• MobileNetV2<br>'
+        '• EfficientNetB0<br>'
+        '• Xception'
+        '</div>',
+        unsafe_allow_html=True
     )
 
-    st.markdown("**Project Topic**")
+    st.divider()
 
-    st.write(
-        "A Comparative Study of Transfer Learning-Based "
-        "Convolutional Neural Networks for Deepfake Image Detection."
+    st.markdown('<div class="sidebar-heading">Project Topic</div>', unsafe_allow_html=True)
+    st.markdown(
+        '<div class="sidebar-value" style="font-weight:400; font-size:13.5px;">'
+        'A Comparative Study of Transfer Learning-Based Convolutional Neural '
+        'Networks for Deepfake Image Detection.'
+        '</div>',
+        unsafe_allow_html=True
     )
 
 
@@ -285,22 +255,21 @@ st.markdown(
 # ============================================================
 # PROJECT INFORMATION
 # ============================================================
+# NOTE: The HTML below is built as a single joined string with no
+# leading indentation on each line. Streamlit's markdown renderer
+# treats 4+ leading spaces as a code block, which was the cause of
+# the raw HTML showing up on the page instead of rendering.
 
-st.markdown(
-    """
-    <div class="project-box">
-        <div class="project-title">
-            Master's Dissertation Project
-        </div>
-
-        <div class="project-topic">
-            A Comparative Study of Transfer Learning-Based
-            Convolutional Neural Networks for Deepfake Image Detection.
-        </div>
-    </div>
-    """,
-    unsafe_allow_html=True
+project_box_html = (
+    '<div class="project-box">'
+    '<div class="project-title">Master\'s Dissertation Project</div>'
+    '<div class="project-topic">A Comparative Study of Transfer '
+    'Learning-Based Convolutional Neural Networks for Deepfake Image '
+    'Detection.</div>'
+    '</div>'
 )
+
+st.markdown(project_box_html, unsafe_allow_html=True)
 
 
 # ============================================================
@@ -310,36 +279,12 @@ st.markdown(
 MODEL_DIR = "models"
 
 MODEL_PATHS = {
-    "VGG16": os.path.join(
-        MODEL_DIR,
-        "VGG16_best.keras"
-    ),
-
-    "ResNet50": os.path.join(
-        MODEL_DIR,
-        "ResNet50_best.keras"
-    ),
-
-    "MobileNetV2": os.path.join(
-        MODEL_DIR,
-        "MobileNetV2_best.keras"
-    ),
-
-    "EfficientNetB0": os.path.join(
-        MODEL_DIR,
-        "EfficientNetB0_best.keras"
-    ),
-
-    "Xception": os.path.join(
-        MODEL_DIR,
-        "Xception_best.keras"
-    )
+    "VGG16": os.path.join(MODEL_DIR, "VGG16_best.keras"),
+    "ResNet50": os.path.join(MODEL_DIR, "ResNet50_best.keras"),
+    "MobileNetV2": os.path.join(MODEL_DIR, "MobileNetV2_best.keras"),
+    "EfficientNetB0": os.path.join(MODEL_DIR, "EfficientNetB0_best.keras"),
+    "Xception": os.path.join(MODEL_DIR, "Xception_best.keras"),
 }
-
-
-# ============================================================
-# IMAGE SIZE
-# ============================================================
 
 IMAGE_SIZE = (224, 224)
 
@@ -348,7 +293,7 @@ IMAGE_SIZE = (224, 224)
 # SELECT MODEL
 # ============================================================
 
-st.subheader("Select CNN Model")
+st.markdown('<div class="section-label">Select CNN Model</div>', unsafe_allow_html=True)
 
 selected_model = st.selectbox(
     "Choose a trained model:",
@@ -364,11 +309,7 @@ selected_model = st.selectbox(
 model_path = MODEL_PATHS[selected_model]
 
 if not os.path.exists(model_path):
-
-    st.error(
-        f"Model file not found: {model_path}"
-    )
-
+    st.error(f"Model file not found: {model_path}")
     st.stop()
 
 
@@ -378,11 +319,7 @@ if not os.path.exists(model_path):
 
 @st.cache_resource
 def load_model(path):
-
-    return tf.keras.models.load_model(
-        path,
-        compile=False
-    )
+    return tf.keras.models.load_model(path, compile=False)
 
 
 model = load_model(model_path)
@@ -392,52 +329,34 @@ model = load_model(model_path)
 # UPLOAD IMAGE
 # ============================================================
 
-st.subheader("Upload Image")
+st.markdown('<div class="section-label">Upload Image</div>', unsafe_allow_html=True)
 
 uploaded_file = st.file_uploader(
     "Upload a facial image for analysis",
-    type=[
-        "jpg",
-        "jpeg",
-        "png",
-        "webp"
-    ],
+    type=["jpg", "jpeg", "png", "webp"],
     label_visibility="collapsed"
 )
 
 
 # ============================================================
-# DISPLAY IMAGE
-# CENTRED + MEDIUM SIZE
+# DISPLAY IMAGE — CENTRED + MEDIUM SIZE
 # ============================================================
 
 if uploaded_file is not None:
 
-    image = Image.open(
-        uploaded_file
-    ).convert("RGB")
+    image = Image.open(uploaded_file).convert("RGB")
 
-    # Centre the uploaded image
-    left_space, image_column, right_space = st.columns(
-        [1, 2, 1]
-    )
+    left_space, image_column, right_space = st.columns([1, 2, 1])
 
     with image_column:
-
-        st.image(
-            image,
-            width=450
-        )
-
+        st.image(image, width=450)
         st.caption("Uploaded Image")
-
 
     st.write("")
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # ANALYSE BUTTON
-    # ========================================================
+    # --------------------------------------------------------
 
     analyse = st.button(
         "🔍 Analyse Image",
@@ -445,172 +364,74 @@ if uploaded_file is not None:
         use_container_width=True
     )
 
-
-    # ========================================================
+    # --------------------------------------------------------
     # ANALYSIS
-    # ========================================================
+    # --------------------------------------------------------
 
     if analyse:
 
         with st.spinner("Analysing image..."):
 
-            # Resize image
-            image_resized = image.resize(
-                IMAGE_SIZE
-            )
-
-            # Convert to NumPy array
-            image_array = np.asarray(
-                image_resized,
-                dtype=np.float32
-            )
-
-            # Same normalisation used during training
+            image_resized = image.resize(IMAGE_SIZE)
+            image_array = np.asarray(image_resized, dtype=np.float32)
             image_array = image_array / 255.0
+            image_array = np.expand_dims(image_array, axis=0)
 
-            # Add batch dimension
-            image_array = np.expand_dims(
-                image_array,
-                axis=0
-            )
+            output = model.predict(image_array, verbose=0)
 
-            # Model prediction
-            output = model.predict(
-                image_array,
-                verbose=0
-            )
+            probability_real = float(output[0][0])
+            probability_fake = 1.0 - probability_real
 
-            probability_real = float(
-                output[0][0]
-            )
-
-            probability_fake = (
-                1.0 - probability_real
-            )
-
-
-        # ====================================================
-        # CLASSIFICATION
-        # ====================================================
-
+        # ---- Classification ----
         if probability_real >= 0.5:
-
             prediction = "REAL"
-
             confidence = probability_real
-
+            badge_class = "badge-real"
         else:
-
             prediction = "DEEPFAKE"
-
             confidence = probability_fake
+            badge_class = "badge-fake"
 
-
-        # ====================================================
-        # PREDICTION LEVEL
-        # ====================================================
-
+        # ---- Prediction level ----
         if confidence >= 0.80:
-
             prediction_level = "HIGH"
-
         elif confidence >= 0.60:
-
             prediction_level = "MODERATE"
-
         else:
-
             prediction_level = "LOW"
 
-
-        # ====================================================
-        # RESULT
-        # ====================================================
-
-        st.markdown(
-            '<div class="result-box">',
-            unsafe_allow_html=True
+        # ---- Result card ----
+        result_html = (
+            '<div class="result-box">'
+            '<div class="result-title">Detection Result</div>'
+            f'<div style="text-align:center; margin-bottom:8px;">'
+            f'<span class="badge {badge_class}">{prediction}</span></div>'
+            f'<div class="prediction-text">This image is classified as '
+            f'<b>{prediction}</b>.</div>'
+            f'<div class="prediction-percentage">{confidence * 100:.2f}%</div>'
+            '<div class="prediction-label">Prediction Probability</div>'
+            f'<div class="level"><b>Prediction Level:</b> {prediction_level}</div>'
+            '</div>'
         )
 
-        st.markdown(
-            '<div class="result-title">'
-            'Detection Result'
-            '</div>',
-            unsafe_allow_html=True
-        )
+        st.markdown(result_html, unsafe_allow_html=True)
 
-        # Main prediction
-        st.markdown(
-            f'<div class="prediction">{prediction}</div>',
-            unsafe_allow_html=True
-        )
-
-        # Classification sentence
-        st.markdown(
-            f'<div class="prediction-text">'
-            f'This image is classified as <b>{prediction}</b>.'
-            f'</div>',
-            unsafe_allow_html=True
-        )
-
-        # Percentage
-        st.markdown(
-            f'<div class="prediction-percentage">'
-            f'{confidence * 100:.2f}%'
-            f'</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '<div class="prediction-label">'
-            'Prediction Probability'
-            '</div>',
-            unsafe_allow_html=True
-        )
-
-        # Prediction level
-        st.markdown(
-            f'<div class="level">'
-            f'<b>Prediction Level:</b> {prediction_level}'
-            f'</div>',
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            '</div>',
-            unsafe_allow_html=True
-        )
-
-
-        # ====================================================
-        # PROBABILITY INFORMATION
-        # ====================================================
-
+        # ---- Probability breakdown ----
         col1, col2 = st.columns(2)
 
         with col1:
-
-            st.metric(
-                "Real Probability",
-                f"{probability_real * 100:.2f}%"
-            )
+            st.metric("Real Probability", f"{probability_real * 100:.2f}%")
 
         with col2:
+            st.metric("Deepfake Probability", f"{probability_fake * 100:.2f}%")
 
-            st.metric(
-                "Deepfake Probability",
-                f"{probability_fake * 100:.2f}%"
-            )
-
-
-        # ====================================================
-        # MODEL INFORMATION
-        # ====================================================
-
+        # ---- Model info ----
         st.caption(
-            f"Model used: {selected_model} • "
-            f"Input size: 224 × 224 pixels"
+            f"Model used: {selected_model} • Input size: 224 × 224 pixels"
         )
+
+else:
+    st.info("Upload an image above to run detection.")
 
 
 # ============================================================
