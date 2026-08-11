@@ -67,8 +67,20 @@ st.markdown("""
 }
 
 /* TITLES */
-h1 { color: #173f67 !important; font-weight: 700 !important; }
+h1 {
+    color: #173f67 !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+}
 h2, h3 { color: #173f67 !important; }
+
+/* Streamlit wraps st.title in a flex header row that is left-aligned
+   by default; center that row so the title lines up with the
+   centered description text underneath it. */
+[data-testid="stHeadingWithActionElements"] {
+    display: flex;
+    justify-content: center;
+}
 
 /* DESCRIPTION */
 .description {
@@ -97,6 +109,20 @@ h2, h3 { color: #173f67 !important; }
     color: #34495e;
     font-size: 15px;
     line-height: 1.55;
+}
+.project-highlights {
+    color: #34495e;
+    font-size: 14.5px;
+    line-height: 1.9;
+    margin: 0;
+    padding-left: 0;
+    list-style: none;
+}
+.project-highlights li {
+    margin-bottom: 2px;
+}
+.project-highlights b {
+    color: #173f67;
 }
 
 /* SECTION LABEL */
@@ -263,9 +289,14 @@ st.markdown(
 project_box_html = (
     '<div class="project-box">'
     '<div class="project-title">Master\'s Dissertation Project</div>'
-    '<div class="project-topic">A Comparative Study of Transfer '
-    'Learning-Based Convolutional Neural Networks for Deepfake Image '
-    'Detection.</div>'
+    '<ul class="project-highlights">'
+    '<li><b>Objective:</b> Classify facial images as Real or Deepfake</li>'
+    '<li><b>Approach:</b> Transfer learning with fine-tuned CNN backbones</li>'
+    '<li><b>Models compared:</b> VGG16, ResNet50, MobileNetV2, '
+    'EfficientNetB0, Xception</li>'
+    '<li><b>Output:</b> Predicted class with confidence score and '
+    'prediction level</li>'
+    '</ul>'
     '</div>'
 )
 
