@@ -154,7 +154,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-
 # ============================================================
 # SIDEBAR
 # ============================================================
@@ -163,7 +162,11 @@ with st.sidebar:
 
     st.markdown(
         """
-        <h2 style="color:#173f67; margin-bottom:20px;">
+        <h2 style="
+            color:#173f67 !important;
+            margin-bottom:22px;
+            font-size:22px;
+        ">
         🔍 Deepfake Detector
         </h2>
         """,
@@ -193,7 +196,8 @@ with st.sidebar:
     st.markdown("**Project Topic:**")
     st.write(
         "A Comparative Study of Transfer Learning-Based "
-        "Convolutional Neural Networks for Deepfake Image Detection."
+        "Convolutional Neural Networks for Deepfake Image "
+        "Detection."
     )
 
 
