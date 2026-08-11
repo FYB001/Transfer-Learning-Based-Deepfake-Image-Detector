@@ -18,49 +18,92 @@ st.set_page_config(
 
 
 # ============================================================
-# CUSTOM STYLE
+# CLEAN BLUE AND WHITE DESIGN
 # ============================================================
 
 st.markdown(
     """
     <style>
 
-    /* Main page background */
+    /* ================================
+       MAIN APPLICATION
+       ================================ */
+
     .stApp {
         background-color: #f7f9fc;
     }
 
-    /* Main content width */
-    .main .block-container {
-        max-width: 1050px;
-        padding-top: 2rem;
+    [data-testid="stAppViewContainer"] {
+        background-color: #f7f9fc;
+    }
+
+    [data-testid="stHeader"] {
+        background-color: #0b1f33;
+    }
+
+    /* Main content width and spacing */
+    .block-container {
+        max-width: 950px;
+        padding-top: 2.5rem;
         padding-bottom: 3rem;
     }
 
-    /* Main title */
-    .main-title {
-        text-align: center;
-        color: #173f67;
-        font-size: 40px;
-        font-weight: 700;
-        margin-bottom: 8px;
+
+    /* ================================
+       SIDEBAR
+       ================================ */
+
+    [data-testid="stSidebar"] {
+        background-color: #ffffff;
+        border-right: 1px solid #dce6f0;
     }
 
-    /* Subtitle */
-    .subtitle {
+    [data-testid="stSidebar"] * {
+        color: #173f67;
+    }
+
+    [data-testid="stSidebar"] hr {
+        border-color: #dce6f0;
+    }
+
+
+    /* ================================
+       TITLES
+       ================================ */
+
+    h1 {
+        color: #173f67 !important;
+        font-weight: 700 !important;
+    }
+
+    h2, h3 {
+        color: #173f67 !important;
+    }
+
+
+    /* ================================
+       DESCRIPTION
+       ================================ */
+
+    .description {
         text-align: center;
         color: #52657a;
         font-size: 16px;
-        margin-bottom: 28px;
+        margin-top: -10px;
+        margin-bottom: 30px;
     }
 
-    /* Project information box */
+
+    /* ================================
+       PROJECT BOX
+       ================================ */
+
     .project-box {
         background-color: #eaf3ff;
         border-left: 5px solid #2d8cff;
         border-radius: 10px;
         padding: 18px 22px;
-        margin-bottom: 30px;
+        margin-bottom: 28px;
     }
 
     .project-title {
@@ -70,31 +113,68 @@ st.markdown(
         margin-bottom: 8px;
     }
 
-    .project-text {
+    .project-topic {
         color: #34495e;
         font-size: 15px;
         line-height: 1.55;
     }
 
-    /* Section headings */
-    .section-title {
+
+    /* ================================
+       UPLOADED IMAGE AREA
+       ================================ */
+
+    .image-title {
         color: #173f67;
-        font-size: 21px;
+        font-size: 20px;
         font-weight: 700;
-        margin-top: 20px;
-        margin-bottom: 12px;
+        margin-top: 25px;
+        margin-bottom: 10px;
     }
 
-    /* Uploaded image caption */
-    .image-caption {
-        text-align: center;
-        color: #52657a;
-        font-size: 14px;
-        margin-top: 5px;
+
+    /* ================================
+       BUTTON
+       ================================ */
+
+    div.stButton > button {
+        background-color: #2d8cff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        height: 48px;
+        font-size: 16px;
+        font-weight: 600;
     }
 
-    /* Result percentage */
-    .percentage {
+    div.stButton > button:hover {
+        background-color: #176fc1;
+        color: white;
+    }
+
+
+    /* ================================
+       RESULT AREA
+       ================================ */
+
+    .result-box {
+        background-color: #ffffff;
+        border: 1px solid #dce6f0;
+        border-radius: 12px;
+        padding: 25px;
+        margin-top: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 8px rgba(23, 63, 103, 0.06);
+    }
+
+    .result-title {
+        color: #173f67;
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 18px;
+    }
+
+    .prediction {
         text-align: center;
         color: #173f67;
         font-size: 30px;
@@ -102,30 +182,48 @@ st.markdown(
         margin-top: 10px;
     }
 
-    /* Result label */
-    .percentage-label {
+    .prediction-text {
         text-align: center;
-        color: #66788a;
-        font-size: 14px;
-        margin-bottom: 12px;
-    }
-
-    /* Prediction level */
-    .prediction-level {
-        text-align: center;
-        color: #34495e;
-        font-size: 17px;
+        color: #52657a;
+        font-size: 16px;
+        margin-top: 8px;
         margin-bottom: 15px;
     }
 
-    /* Footer */
+    .prediction-percentage {
+        text-align: center;
+        color: #173f67;
+        font-size: 32px;
+        font-weight: 700;
+    }
+
+    .prediction-label {
+        text-align: center;
+        color: #718096;
+        font-size: 14px;
+        margin-bottom: 15px;
+    }
+
+    .level {
+        text-align: center;
+        color: #34495e;
+        font-size: 17px;
+        margin-top: 8px;
+        margin-bottom: 15px;
+    }
+
+
+    /* ================================
+       FOOTER
+       ================================ */
+
     .footer {
         text-align: center;
         color: #7a8795;
         font-size: 13px;
         margin-top: 35px;
-        padding-top: 15px;
-        border-top: 1px solid #dfe5eb;
+        padding-top: 18px;
+        border-top: 1px solid #dce6f0;
     }
 
     </style>
@@ -140,33 +238,30 @@ st.markdown(
 
 with st.sidebar:
 
-    st.markdown(
-        "## 🔍 Deepfake Detector"
-    )
+    st.markdown("## 🔍 Deepfake Detector")
 
-    st.markdown("---")
+    st.divider()
 
-    st.markdown("**Student:**")
+    st.markdown("**Student**")
     st.write("Fatmata Yealie Bangura")
 
-    st.markdown("**University:**")
+    st.markdown("**University**")
     st.write("Wrexham University")
 
-    st.markdown("**Programme:**")
+    st.markdown("**Programme**")
     st.write("MSc Data Science and Big Data Analytics")
 
-    st.markdown("**Models:**")
+    st.markdown("**Models**")
     st.write(
-        """
-        VGG16  
-        ResNet50  
-        MobileNetV2  
-        EfficientNetB0  
-        Xception
-        """
+        "VGG16\n\n"
+        "ResNet50\n\n"
+        "MobileNetV2\n\n"
+        "EfficientNetB0\n\n"
+        "Xception"
     )
 
-    st.markdown("**Project Topic:**")
+    st.markdown("**Project Topic**")
+
     st.write(
         "A Comparative Study of Transfer Learning-Based "
         "Convolutional Neural Networks for Deepfake Image Detection."
@@ -174,18 +269,13 @@ with st.sidebar:
 
 
 # ============================================================
-# MAIN PAGE TITLE
+# MAIN TITLE
 # ============================================================
 
-st.markdown(
-    '<div class="main-title">'
-    '🔍 Deepfake Image Detection'
-    '</div>',
-    unsafe_allow_html=True
-)
+st.title("🔍 Deepfake Image Detection")
 
 st.markdown(
-    '<div class="subtitle">'
+    '<div class="description">'
     'A transfer learning-based system for classifying images as Real or Deepfake.'
     '</div>',
     unsafe_allow_html=True
@@ -199,18 +289,14 @@ st.markdown(
 st.markdown(
     """
     <div class="project-box">
-
         <div class="project-title">
             Master's Dissertation Project
         </div>
 
-        <div class="project-text">
-            <b>
+        <div class="project-topic">
             A Comparative Study of Transfer Learning-Based
             Convolutional Neural Networks for Deepfake Image Detection.
-            </b>
         </div>
-
     </div>
     """,
     unsafe_allow_html=True
@@ -259,13 +345,10 @@ IMAGE_SIZE = (224, 224)
 
 
 # ============================================================
-# SELECT CNN MODEL
+# SELECT MODEL
 # ============================================================
 
-st.markdown(
-    '<div class="section-title">Select CNN Model</div>',
-    unsafe_allow_html=True
-)
+st.subheader("Select CNN Model")
 
 selected_model = st.selectbox(
     "Choose a trained model:",
@@ -275,7 +358,7 @@ selected_model = st.selectbox(
 
 
 # ============================================================
-# CHECK MODEL FILE
+# CHECK MODEL
 # ============================================================
 
 model_path = MODEL_PATHS[selected_model]
@@ -309,10 +392,7 @@ model = load_model(model_path)
 # UPLOAD IMAGE
 # ============================================================
 
-st.markdown(
-    '<div class="section-title">Upload Image</div>',
-    unsafe_allow_html=True
-)
+st.subheader("Upload Image")
 
 uploaded_file = st.file_uploader(
     "Upload a facial image for analysis",
@@ -327,8 +407,8 @@ uploaded_file = st.file_uploader(
 
 
 # ============================================================
-# DISPLAY UPLOADED IMAGE
-# CENTRED AND MEDIUM SIZE
+# DISPLAY IMAGE
+# CENTRED + MEDIUM SIZE
 # ============================================================
 
 if uploaded_file is not None:
@@ -337,26 +417,19 @@ if uploaded_file is not None:
         uploaded_file
     ).convert("RGB")
 
-    # Three columns are ONLY used to centre the image.
-    # The image itself is fixed at 450 pixels wide.
-
-    left_col, centre_col, right_col = st.columns(
+    # Centre the uploaded image
+    left_space, image_column, right_space = st.columns(
         [1, 2, 1]
     )
 
-    with centre_col:
+    with image_column:
 
         st.image(
             image,
             width=450
         )
 
-        st.markdown(
-            '<div class="image-caption">'
-            'Uploaded Image'
-            '</div>',
-            unsafe_allow_html=True
-        )
+        st.caption("Uploaded Image")
 
 
     st.write("")
@@ -366,7 +439,7 @@ if uploaded_file is not None:
     # ANALYSE BUTTON
     # ========================================================
 
-    analyse_button = st.button(
+    analyse = st.button(
         "🔍 Analyse Image",
         type="primary",
         use_container_width=True
@@ -374,10 +447,10 @@ if uploaded_file is not None:
 
 
     # ========================================================
-    # RUN ANALYSIS
+    # ANALYSIS
     # ========================================================
 
-    if analyse_button:
+    if analyse:
 
         with st.spinner("Analysing image..."):
 
@@ -386,7 +459,7 @@ if uploaded_file is not None:
                 IMAGE_SIZE
             )
 
-            # Convert to NumPy
+            # Convert to NumPy array
             image_array = np.asarray(
                 image_resized,
                 dtype=np.float32
@@ -402,13 +475,13 @@ if uploaded_file is not None:
             )
 
             # Model prediction
-            prediction_output = model.predict(
+            output = model.predict(
                 image_array,
                 verbose=0
             )
 
             probability_real = float(
-                prediction_output[0][0]
+                output[0][0]
             )
 
             probability_fake = (
@@ -424,28 +497,24 @@ if uploaded_file is not None:
 
             prediction = "REAL"
 
-            prediction_probability = (
-                probability_real
-            )
+            confidence = probability_real
 
         else:
 
             prediction = "DEEPFAKE"
 
-            prediction_probability = (
-                probability_fake
-            )
+            confidence = probability_fake
 
 
         # ====================================================
         # PREDICTION LEVEL
         # ====================================================
 
-        if prediction_probability >= 0.80:
+        if confidence >= 0.80:
 
             prediction_level = "HIGH"
 
-        elif prediction_probability >= 0.60:
+        elif confidence >= 0.60:
 
             prediction_level = "MODERATE"
 
@@ -455,83 +524,78 @@ if uploaded_file is not None:
 
 
         # ====================================================
-        # DETECTION RESULT
+        # RESULT
         # ====================================================
 
-        st.markdown("---")
+        st.markdown(
+            '<div class="result-box">',
+            unsafe_allow_html=True
+        )
 
         st.markdown(
-            '<div class="section-title">'
+            '<div class="result-title">'
             'Detection Result'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
+        # Main prediction
+        st.markdown(
+            f'<div class="prediction">{prediction}</div>',
+            unsafe_allow_html=True
+        )
+
+        # Classification sentence
+        st.markdown(
+            f'<div class="prediction-text">'
+            f'This image is classified as <b>{prediction}</b>.'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+
+        # Percentage
+        st.markdown(
+            f'<div class="prediction-percentage">'
+            f'{confidence * 100:.2f}%'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            '<div class="prediction-label">'
+            'Prediction Probability'
+            '</div>',
+            unsafe_allow_html=True
+        )
+
+        # Prediction level
+        st.markdown(
+            f'<div class="level">'
+            f'<b>Prediction Level:</b> {prediction_level}'
+            f'</div>',
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
             '</div>',
             unsafe_allow_html=True
         )
 
 
         # ====================================================
-        # MAIN CLASSIFICATION
+        # PROBABILITY INFORMATION
         # ====================================================
 
-        if prediction == "REAL":
+        col1, col2 = st.columns(2)
 
-            st.success(
-                "✓ This image is classified as REAL."
-            )
-
-        else:
-
-            st.error(
-                "⚠ This image is classified as DEEPFAKE."
-            )
-
-
-        # ====================================================
-        # PREDICTION PERCENTAGE
-        # ====================================================
-
-        st.markdown(
-            f"""
-            <div class="percentage">
-                {prediction_probability * 100:.2f}%
-            </div>
-
-            <div class="percentage-label">
-                Prediction Probability
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-
-        # ====================================================
-        # PREDICTION LEVEL
-        # ====================================================
-
-        st.markdown(
-            f"""
-            <div class="prediction-level">
-                <b>Prediction Level:</b>
-                {prediction_level}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-
-        # ====================================================
-        # PROBABILITY DETAILS
-        # ====================================================
-
-        probability_col1, probability_col2 = st.columns(2)
-
-        with probability_col1:
+        with col1:
 
             st.metric(
                 "Real Probability",
                 f"{probability_real * 100:.2f}%"
             )
 
-        with probability_col2:
+        with col2:
 
             st.metric(
                 "Deepfake Probability",
@@ -540,11 +604,12 @@ if uploaded_file is not None:
 
 
         # ====================================================
-        # MODEL USED
+        # MODEL INFORMATION
         # ====================================================
 
         st.caption(
-            f"Model used: {selected_model}"
+            f"Model used: {selected_model} • "
+            f"Input size: 224 × 224 pixels"
         )
 
 
@@ -553,12 +618,10 @@ if uploaded_file is not None:
 # ============================================================
 
 st.markdown(
-    """
-    <div class="footer">
-        Transfer Learning-Based Deepfake Image Detection
-        <br>
-        Wrexham University • Master's Dissertation
-    </div>
-    """,
+    '<div class="footer">'
+    'Transfer Learning-Based Deepfake Image Detection'
+    '<br>'
+    'Wrexham University • MSc Data Science and Big Data Analytics'
+    '</div>',
     unsafe_allow_html=True
 )
