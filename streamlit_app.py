@@ -292,8 +292,6 @@ project_box_html = (
     '<ul class="project-highlights">'
     '<li><b>Objective:</b> Classify facial images as Real or Deepfake</li>'
     '<li><b>Approach:</b> Transfer learning with fine-tuned CNN backbones</li>'
-    '<li><b>Models compared:</b> VGG16, ResNet50, MobileNetV2, '
-    'EfficientNetB0, Xception</li>'
     '<li><b>Output:</b> Predicted class with confidence score and '
     'prediction level</li>'
     '</ul>'
