@@ -478,92 +478,133 @@ if uploaded_file is not None:
 
             prediction_level = "LOW"
 
-        # ====================================================
-        # RESULT CARD
-        # ====================================================
+      # ====================================================
+# RESULT CARD
+# ====================================================
 
-        st.markdown(
-            '<div class="result-card">',
-            unsafe_allow_html=True
-        )
+st.markdown(
+    '<div class="result-card">',
+    unsafe_allow_html=True
+)
 
-        st.markdown(
-            '<div class="result-title">'
-            'Detection Result'
-            '</div>',
-            unsafe_allow_html=True
-        )
+st.markdown(
+    '<div class="result-title">Detection Result</div>',
+    unsafe_allow_html=True
+)
 
-        if prediction == "REAL":
+# Classification
+if prediction == "REAL":
 
-            st.markdown(
-                '<div class="prediction prediction-real">'
-                'REAL'
-                '</div>',
-                unsafe_allow_html=True
-            )
+    st.markdown(
+        '<div class="prediction prediction-real">REAL</div>',
+        unsafe_allow_html=True
+    )
 
-        else:
+    st.markdown(
+        f"""
+        <div style="
+            text-align:center;
+            font-size:1.05rem;
+            color:#374151;
+            margin-bottom:1rem;
+        ">
+        This image is classified as <b>REAL</b>
+        with a probability of
+        <b>{probability_real * 100:.2f}%</b>.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-            st.markdown(
-                '<div class="prediction prediction-fake">'
-                'DEEPFAKE'
-                '</div>',
-                unsafe_allow_html=True
-            )
+else:
 
-        st.markdown(
-            f"""
-            <div class="prediction-level">
-            Prediction Level: {prediction_level}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+    st.markdown(
+        '<div class="prediction prediction-fake">DEEPFAKE</div>',
+        unsafe_allow_html=True
+    )
 
-        # ----------------------------------------------------
-        # CONFIDENCE
-        # ----------------------------------------------------
+    st.markdown(
+        f"""
+        <div style="
+            text-align:center;
+            font-size:1.05rem;
+            color:#374151;
+            margin-bottom:1rem;
+        ">
+        This image is classified as <b>DEEPFAKE</b>
+        with a probability of
+        <b>{probability_fake * 100:.2f}%</b>.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-        st.progress(
-            confidence
-        )
+# Prediction Level
+st.markdown(
+    f"""
+    <div style="
+        text-align:center;
+        font-size:1rem;
+        font-weight:600;
+        color:#374151;
+        margin-bottom:1rem;
+    ">
+    Prediction Level: {prediction_level}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
-        st.metric(
-            "Confidence",
-            f"{confidence * 100:.2f}%"
-        )
+# ====================================================
+# PROBABILITY PERCENTAGES
+# ====================================================
 
-        # ----------------------------------------------------
-        # PROBABILITIES
-        # ----------------------------------------------------
+col1, col2 = st.columns(2)
 
-        col1, col2 = st.columns(2)
+with col1:
 
-        with col1:
+    st.metric(
+        "Real Probability",
+        f"{probability_real * 100:.2f}%"
+    )
 
-            st.write(
-                "**Real Probability**"
-            )
+with col2:
 
-            st.write(
-                f"{probability_real * 100:.2f}%"
-            )
+    st.metric(
+        "Deepfake Probability",
+        f"{probability_fake * 100:.2f}%"
+    )
 
-        with col2:
+# ====================================================
+# CONFIDENCE
+# ====================================================
 
-            st.write(
-                "**Deepfake Probability**"
-            )
+st.markdown(
+    "<div style='margin-top:1rem;'><b>Prediction Confidence</b></div>",
+    unsafe_allow_html=True
+)
 
-            st.write(
-                f"{probability_fake * 100:.2f}%"
-            )
+st.progress(confidence)
 
-        st.markdown(
-            '</div>',
-            unsafe_allow_html=True
-        )
+st.markdown(
+    f"""
+    <div style="
+        text-align:center;
+        font-size:1.15rem;
+        font-weight:700;
+        color:#12355b;
+        margin-top:0.4rem;
+    ">
+    {confidence * 100:.2f}%
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    '</div>',
+    unsafe_allow_html=True
+)
 
         # ====================================================
         # ANALYSIS INFORMATION
