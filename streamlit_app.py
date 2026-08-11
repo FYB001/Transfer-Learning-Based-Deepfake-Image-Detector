@@ -1,9 +1,9 @@
-
 import os
 import numpy as np
 import streamlit as st
 import tensorflow as tf
 from PIL import Image
+
 
 # ============================================================
 # PAGE CONFIGURATION
@@ -15,6 +15,7 @@ st.set_page_config(
     layout="centered",
     initial_sidebar_state="expanded"
 )
+
 
 # ============================================================
 # CUSTOM CSS
@@ -157,6 +158,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
 # ============================================================
 # SIDEBAR
 # ============================================================
@@ -171,16 +173,20 @@ with st.sidebar:
     st.markdown(
         """
         <div class="sidebar-text">
+
         <b>Student:</b><br>
         Fatmata Yealie Bangura
+
         <br><br>
 
         <b>University:</b><br>
         Wrexham University
+
         <br><br>
 
         <b>Programme:</b><br>
         MSc Data Science and Big Data Analytics
+
         <br><br>
 
         <b>Models:</b><br>
@@ -189,6 +195,7 @@ with st.sidebar:
         MobileNetV2<br>
         EfficientNetB0<br>
         Xception
+
         </div>
         """,
         unsafe_allow_html=True
@@ -199,6 +206,7 @@ with st.sidebar:
     st.caption(
         "Transfer Learning-Based Deepfake Image Detection"
     )
+
 
 # ============================================================
 # MAIN TITLE
@@ -219,6 +227,7 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+
 # ============================================================
 # PROJECT INFORMATION
 # ============================================================
@@ -227,19 +236,22 @@ st.markdown(
     """
     <div class="project-box">
 
-    <div class="project-box-title">
-    Master's Dissertation Project
-    </div>
+        <div class="project-box-title">
+        Master's Dissertation Project
+        </div>
 
-    <div class="project-box-text">
-    <b>A Comparative Study of Transfer Learning-Based
-    Convolutional Neural Networks for Deepfake Image Detection</b>
-    </div>
+        <div class="project-box-text">
+        <b>
+        A Comparative Study of Transfer Learning-Based
+        Convolutional Neural Networks for Deepfake Image Detection
+        </b>
+        </div>
 
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 # ============================================================
 # MODEL DIRECTORY
@@ -275,11 +287,13 @@ MODEL_PATHS = {
     )
 }
 
+
 # ============================================================
 # IMAGE SETTINGS
 # ============================================================
 
 IMAGE_SIZE = (224, 224)
+
 
 # ============================================================
 # MODEL SELECTION
@@ -295,6 +309,7 @@ selected_model = st.selectbox(
     list(MODEL_PATHS.keys())
 )
 
+
 # ============================================================
 # MODEL PATH CHECK
 # ============================================================
@@ -308,6 +323,7 @@ if not os.path.exists(model_path):
     )
 
     st.stop()
+
 
 # ============================================================
 # LOAD MODEL
@@ -328,6 +344,7 @@ with st.spinner(
 
     model = load_model(model_path)
 
+
 # ============================================================
 # IMAGE UPLOAD
 # ============================================================
@@ -347,6 +364,7 @@ uploaded_file = st.file_uploader(
     ]
 )
 
+
 # ============================================================
 # IMAGE DISPLAY AND ANALYSIS
 # ============================================================
@@ -356,6 +374,7 @@ if uploaded_file is not None:
     image = Image.open(
         uploaded_file
     ).convert("RGB")
+
 
     # --------------------------------------------------------
     # DISPLAY IMAGE AT NORMAL SIZE
@@ -373,6 +392,7 @@ if uploaded_file is not None:
             width=500
         )
 
+
     # --------------------------------------------------------
     # ANALYSE BUTTON
     # --------------------------------------------------------
@@ -384,6 +404,7 @@ if uploaded_file is not None:
         type="primary",
         use_container_width=True
     )
+
 
     # ========================================================
     # PREDICTION
@@ -403,6 +424,7 @@ if uploaded_file is not None:
                 IMAGE_SIZE
             )
 
+
             # ------------------------------------------------
             # CONVERT TO NUMPY ARRAY
             # ------------------------------------------------
@@ -412,11 +434,13 @@ if uploaded_file is not None:
                 dtype=np.float32
             )
 
+
             # ------------------------------------------------
             # NORMALISATION
             # ------------------------------------------------
 
             image_array = image_array / 255.0
+
 
             # ------------------------------------------------
             # ADD BATCH DIMENSION
@@ -427,6 +451,7 @@ if uploaded_file is not None:
                 axis=0
             )
 
+
             # ------------------------------------------------
             # MODEL PREDICTION
             # ------------------------------------------------
@@ -436,9 +461,11 @@ if uploaded_file is not None:
                 verbose=0
             )
 
+
             probability_real = float(
                 prediction_output[0][0]
             )
+
 
             # ------------------------------------------------
             # CALCULATE DEEPFAKE PROBABILITY
@@ -447,6 +474,7 @@ if uploaded_file is not None:
             probability_fake = (
                 1.0 - probability_real
             )
+
 
         # ====================================================
         # CLASSIFICATION
@@ -461,6 +489,7 @@ if uploaded_file is not None:
 
             prediction = "DEEPFAKE"
             confidence = probability_fake
+
 
         # ====================================================
         # PREDICTION LEVEL
@@ -478,133 +507,149 @@ if uploaded_file is not None:
 
             prediction_level = "LOW"
 
-      # ====================================================
-# RESULT CARD
-# ====================================================
 
-st.markdown(
-    '<div class="result-card">',
-    unsafe_allow_html=True
-)
+        # ====================================================
+        # RESULT CARD
+        # ====================================================
 
-st.markdown(
-    '<div class="result-title">Detection Result</div>',
-    unsafe_allow_html=True
-)
+        st.markdown(
+            '<div class="result-card">',
+            unsafe_allow_html=True
+        )
 
-# Classification
-if prediction == "REAL":
+        st.markdown(
+            '<div class="result-title">Detection Result</div>',
+            unsafe_allow_html=True
+        )
 
-    st.markdown(
-        '<div class="prediction prediction-real">REAL</div>',
-        unsafe_allow_html=True
-    )
 
-    st.markdown(
-        f"""
-        <div style="
-            text-align:center;
-            font-size:1.05rem;
-            color:#374151;
-            margin-bottom:1rem;
-        ">
-        This image is classified as <b>REAL</b>
-        with a probability of
-        <b>{probability_real * 100:.2f}%</b>.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        # ====================================================
+        # CLASSIFICATION
+        # ====================================================
 
-else:
+        if prediction == "REAL":
 
-    st.markdown(
-        '<div class="prediction prediction-fake">DEEPFAKE</div>',
-        unsafe_allow_html=True
-    )
+            st.markdown(
+                '<div class="prediction prediction-real">REAL</div>',
+                unsafe_allow_html=True
+            )
 
-    st.markdown(
-        f"""
-        <div style="
-            text-align:center;
-            font-size:1.05rem;
-            color:#374151;
-            margin-bottom:1rem;
-        ">
-        This image is classified as <b>DEEPFAKE</b>
-        with a probability of
-        <b>{probability_fake * 100:.2f}%</b>.
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            st.markdown(
+                f"""
+                <div style="
+                    text-align:center;
+                    font-size:1.05rem;
+                    color:#374151;
+                    margin-bottom:1rem;
+                ">
+                This image is classified as
+                <b>REAL</b> with a probability of
+                <b>{probability_real * 100:.2f}%</b>.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-# Prediction Level
-st.markdown(
-    f"""
-    <div style="
-        text-align:center;
-        font-size:1rem;
-        font-weight:600;
-        color:#374151;
-        margin-bottom:1rem;
-    ">
-    Prediction Level: {prediction_level}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+        else:
 
-# ====================================================
-# PROBABILITY PERCENTAGES
-# ====================================================
+            st.markdown(
+                '<div class="prediction prediction-fake">DEEPFAKE</div>',
+                unsafe_allow_html=True
+            )
 
-col1, col2 = st.columns(2)
+            st.markdown(
+                f"""
+                <div style="
+                    text-align:center;
+                    font-size:1.05rem;
+                    color:#374151;
+                    margin-bottom:1rem;
+                ">
+                This image is classified as
+                <b>DEEPFAKE</b> with a probability of
+                <b>{probability_fake * 100:.2f}%</b>.
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
-with col1:
 
-    st.metric(
-        "Real Probability",
-        f"{probability_real * 100:.2f}%"
-    )
+        # ====================================================
+        # PREDICTION LEVEL
+        # ====================================================
 
-with col2:
+        st.markdown(
+            f"""
+            <div style="
+                text-align:center;
+                font-size:1rem;
+                font-weight:600;
+                color:#374151;
+                margin-bottom:1rem;
+            ">
+            Prediction Level: {prediction_level}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    st.metric(
-        "Deepfake Probability",
-        f"{probability_fake * 100:.2f}%"
-    )
 
-# ====================================================
-# CONFIDENCE
-# ====================================================
+        # ====================================================
+        # PROBABILITY PERCENTAGES
+        # ====================================================
 
-st.markdown(
-    "<div style='margin-top:1rem;'><b>Prediction Confidence</b></div>",
-    unsafe_allow_html=True
-)
+        col1, col2 = st.columns(2)
 
-st.progress(confidence)
+        with col1:
 
-st.markdown(
-    f"""
-    <div style="
-        text-align:center;
-        font-size:1.15rem;
-        font-weight:700;
-        color:#12355b;
-        margin-top:0.4rem;
-    ">
-    {confidence * 100:.2f}%
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+            st.metric(
+                "Real Probability",
+                f"{probability_real * 100:.2f}%"
+            )
 
-st.markdown(
-    '</div>',
-    unsafe_allow_html=True
-)
+        with col2:
+
+            st.metric(
+                "Deepfake Probability",
+                f"{probability_fake * 100:.2f}%"
+            )
+
+
+        # ====================================================
+        # PREDICTION CONFIDENCE
+        # ====================================================
+
+        st.markdown(
+            "<div style='margin-top:1rem;'>"
+            "<b>Prediction Confidence</b>"
+            "</div>",
+            unsafe_allow_html=True
+        )
+
+        st.progress(confidence)
+
+        st.markdown(
+            f"""
+            <div style="
+                text-align:center;
+                font-size:1.15rem;
+                font-weight:700;
+                color:#12355b;
+                margin-top:0.4rem;
+            ">
+            {confidence * 100:.2f}%
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+
+        # Close result card
+        st.markdown(
+            '</div>',
+            unsafe_allow_html=True
+        )
+
 
         # ====================================================
         # ANALYSIS INFORMATION
@@ -637,6 +682,7 @@ st.markdown(
             st.write(
                 "1 / 255"
             )
+
 
 # ============================================================
 # FOOTER
