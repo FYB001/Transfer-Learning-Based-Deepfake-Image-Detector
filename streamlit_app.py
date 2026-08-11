@@ -175,9 +175,7 @@ if uploaded_file is not None:
                 )[0][0]
             )
 
-            # Binary classification:
-            # fake = 0
-            # real = 1
+            # Fake probability
             probability_fake = (
                 1.0 - probability_real
             )
