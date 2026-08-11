@@ -18,50 +18,26 @@ st.set_page_config(
 
 
 # ============================================================
-# CUSTOM CSS
+# CUSTOM STYLE
 # ============================================================
 
 st.markdown(
     """
     <style>
 
-    /* =========================
-       GENERAL PAGE
-       ========================= */
-
+    /* Main page background */
     .stApp {
         background-color: #f7f9fc;
     }
 
+    /* Main content width */
     .main .block-container {
         max-width: 1050px;
-        padding-top: 2.2rem;
+        padding-top: 2rem;
         padding-bottom: 3rem;
     }
 
-
-    /* =========================
-       SIDEBAR
-       ========================= */
-
-    section[data-testid="stSidebar"] {
-        background-color: #ffffff !important;
-        border-right: 1px solid #d9e2ec !important;
-    }
-
-    section[data-testid="stSidebar"] > div {
-        background-color: #ffffff !important;
-    }
-
-    section[data-testid="stSidebar"] .block-container {
-        padding: 2rem 1.3rem 2rem 1.3rem !important;
-    }
-
-
-    /* =========================
-       MAIN TITLE
-       ========================= */
-
+    /* Main title */
     .main-title {
         text-align: center;
         color: #173f67;
@@ -70,6 +46,7 @@ st.markdown(
         margin-bottom: 8px;
     }
 
+    /* Subtitle */
     .subtitle {
         text-align: center;
         color: #52657a;
@@ -77,18 +54,13 @@ st.markdown(
         margin-bottom: 28px;
     }
 
-
-    /* =========================
-       PROJECT BOX
-       ========================= */
-
+    /* Project information box */
     .project-box {
         background-color: #eaf3ff;
         border-left: 5px solid #2d8cff;
         border-radius: 10px;
         padding: 18px 22px;
-        margin: 0 auto 30px auto;
-        max-width: 850px;
+        margin-bottom: 30px;
     }
 
     .project-title {
@@ -104,11 +76,7 @@ st.markdown(
         line-height: 1.55;
     }
 
-
-    /* =========================
-       SECTION HEADINGS
-       ========================= */
-
+    /* Section headings */
     .section-title {
         color: #173f67;
         font-size: 21px;
@@ -117,69 +85,40 @@ st.markdown(
         margin-bottom: 12px;
     }
 
-
-    /* =========================
-       UPLOADED IMAGE
-       ========================= */
-
-    .uploaded-caption {
+    /* Uploaded image caption */
+    .image-caption {
         text-align: center;
         color: #52657a;
         font-size: 14px;
         margin-top: 5px;
     }
 
-
-    /* =========================
-       RESULT
-       ========================= */
-
-    .result-box {
-        background-color: #ffffff;
-        border: 1px solid #dce3eb;
-        border-radius: 12px;
-        padding: 25px;
-        margin-top: 20px;
+    /* Result percentage */
+    .percentage {
         text-align: center;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    }
-
-    .result-real {
-        color: #16803c;
-        font-size: 32px;
-        font-weight: 800;
-    }
-
-    .result-fake {
-        color: #c62828;
-        font-size: 32px;
-        font-weight: 800;
-    }
-
-    .prediction-percentage {
         color: #173f67;
-        font-size: 28px;
+        font-size: 30px;
         font-weight: 700;
         margin-top: 10px;
     }
 
-    .prediction-label {
+    /* Result label */
+    .percentage-label {
+        text-align: center;
         color: #66788a;
         font-size: 14px;
         margin-bottom: 12px;
     }
 
+    /* Prediction level */
     .prediction-level {
+        text-align: center;
         color: #34495e;
         font-size: 17px;
-        margin-bottom: 10px;
+        margin-bottom: 15px;
     }
 
-
-    /* =========================
-       FOOTER
-       ========================= */
-
+    /* Footer */
     .footer {
         text-align: center;
         color: #7a8795;
@@ -202,90 +141,53 @@ st.markdown(
 with st.sidebar:
 
     st.markdown(
+        "## 🔍 Deepfake Detector"
+    )
+
+    st.markdown("---")
+
+    st.markdown("**Student:**")
+    st.write("Fatmata Yealie Bangura")
+
+    st.markdown("**University:**")
+    st.write("Wrexham University")
+
+    st.markdown("**Programme:**")
+    st.write("MSc Data Science and Big Data Analytics")
+
+    st.markdown("**Models:**")
+    st.write(
         """
-        <div style="
-            color:#173f67;
-            font-size:22px;
-            font-weight:700;
-            margin-bottom:25px;
-        ">
-            🔍 Deepfake Detector
-        </div>
+        VGG16  
+        ResNet50  
+        MobileNetV2  
+        EfficientNetB0  
+        Xception
+        """
+    )
 
-        <div style="
-            color:#173f67;
-            font-size:14px;
-            line-height:1.6;
-        ">
-
-            <div style="margin-bottom:22px;">
-                <b style="color:#173f67;">Student:</b><br>
-                <span style="color:#34495e;">
-                    Fatmata Yealie Bangura
-                </span>
-            </div>
-
-            <div style="margin-bottom:22px;">
-                <b style="color:#173f67;">University:</b><br>
-                <span style="color:#34495e;">
-                    Wrexham University
-                </span>
-            </div>
-
-            <div style="margin-bottom:22px;">
-                <b style="color:#173f67;">Programme:</b><br>
-                <span style="color:#34495e;">
-                    MSc Data Science and Big Data Analytics
-                </span>
-            </div>
-
-            <div style="margin-bottom:22px;">
-                <b style="color:#173f67;">Models:</b><br>
-                <span style="color:#34495e;">
-                    VGG16<br>
-                    ResNet50<br>
-                    MobileNetV2<br>
-                    EfficientNetB0<br>
-                    Xception
-                </span>
-            </div>
-
-            <div style="margin-bottom:10px;">
-                <b style="color:#173f67;">Project Topic:</b>
-            </div>
-
-            <div style="
-                color:#34495e;
-                font-size:13px;
-                line-height:1.55;
-            ">
-                A Comparative Study of Transfer Learning-Based
-                Convolutional Neural Networks for Deepfake Image
-                Detection.
-            </div>
-
-        </div>
-        """,
-        unsafe_allow_html=True
+    st.markdown("**Project Topic:**")
+    st.write(
+        "A Comparative Study of Transfer Learning-Based "
+        "Convolutional Neural Networks for Deepfake Image Detection."
     )
 
 
 # ============================================================
-# MAIN HEADER
+# MAIN PAGE TITLE
 # ============================================================
 
 st.markdown(
-    '<div class="main-title">🔍 Deepfake Image Detection</div>',
+    '<div class="main-title">'
+    '🔍 Deepfake Image Detection'
+    '</div>',
     unsafe_allow_html=True
 )
 
 st.markdown(
-    """
-    <div class="subtitle">
-        A transfer learning-based system for classifying images as
-        Real or Deepfake.
-    </div>
-    """,
+    '<div class="subtitle">'
+    'A transfer learning-based system for classifying images as Real or Deepfake.'
+    '</div>',
     unsafe_allow_html=True
 )
 
@@ -357,7 +259,7 @@ IMAGE_SIZE = (224, 224)
 
 
 # ============================================================
-# SELECT MODEL
+# SELECT CNN MODEL
 # ============================================================
 
 st.markdown(
@@ -373,7 +275,7 @@ selected_model = st.selectbox(
 
 
 # ============================================================
-# CHECK MODEL
+# CHECK MODEL FILE
 # ============================================================
 
 model_path = MODEL_PATHS[selected_model]
@@ -426,7 +328,7 @@ uploaded_file = st.file_uploader(
 
 # ============================================================
 # DISPLAY UPLOADED IMAGE
-# CENTRED + MEDIUM SIZE
+# CENTRED AND MEDIUM SIZE
 # ============================================================
 
 if uploaded_file is not None:
@@ -435,14 +337,14 @@ if uploaded_file is not None:
         uploaded_file
     ).convert("RGB")
 
-    # Three columns are used ONLY to centre the image.
-    # The rest of the page is unchanged.
+    # Three columns are ONLY used to centre the image.
+    # The image itself is fixed at 450 pixels wide.
 
-    left_space, image_space, right_space = st.columns(
+    left_col, centre_col, right_col = st.columns(
         [1, 2, 1]
     )
 
-    with image_space:
+    with centre_col:
 
         st.image(
             image,
@@ -450,7 +352,7 @@ if uploaded_file is not None:
         )
 
         st.markdown(
-            '<div class="uploaded-caption">'
+            '<div class="image-caption">'
             'Uploaded Image'
             '</div>',
             unsafe_allow_html=True
@@ -472,14 +374,14 @@ if uploaded_file is not None:
 
 
     # ========================================================
-    # ANALYSIS
+    # RUN ANALYSIS
     # ========================================================
 
     if analyse_button:
 
         with st.spinner("Analysing image..."):
 
-            # Resize
+            # Resize image
             image_resized = image.resize(
                 IMAGE_SIZE
             )
@@ -490,7 +392,7 @@ if uploaded_file is not None:
                 dtype=np.float32
             )
 
-            # Normalisation used during training
+            # Same normalisation used during training
             image_array = image_array / 255.0
 
             # Add batch dimension
@@ -499,7 +401,7 @@ if uploaded_file is not None:
                 axis=0
             )
 
-            # Prediction
+            # Model prediction
             prediction_output = model.predict(
                 image_array,
                 verbose=0
@@ -556,47 +458,45 @@ if uploaded_file is not None:
         # DETECTION RESULT
         # ====================================================
 
+        st.markdown("---")
+
         st.markdown(
-            '<div class="section-title">Detection Result</div>',
+            '<div class="section-title">'
+            'Detection Result'
+            '</div>',
             unsafe_allow_html=True
         )
 
 
-        # Result heading
+        # ====================================================
+        # MAIN CLASSIFICATION
+        # ====================================================
+
         if prediction == "REAL":
 
-            result_class = "result-real"
-
-            result_icon = "✓"
+            st.success(
+                "✓ This image is classified as REAL."
+            )
 
         else:
 
-            result_class = "result-fake"
+            st.error(
+                "⚠ This image is classified as DEEPFAKE."
+            )
 
-            result_icon = "⚠"
 
+        # ====================================================
+        # PREDICTION PERCENTAGE
+        # ====================================================
 
         st.markdown(
             f"""
-            <div class="result-box">
+            <div class="percentage">
+                {prediction_probability * 100:.2f}%
+            </div>
 
-                <div class="{result_class}">
-                    {result_icon} {prediction}
-                </div>
-
-                <div class="prediction-percentage">
-                    {prediction_probability * 100:.2f}%
-                </div>
-
-                <div class="prediction-label">
-                    Prediction Probability
-                </div>
-
-                <div class="prediction-level">
-                    <b>Prediction Level:</b>
-                    {prediction_level}
-                </div>
-
+            <div class="percentage-label">
+                Prediction Probability
             </div>
             """,
             unsafe_allow_html=True
@@ -604,10 +504,23 @@ if uploaded_file is not None:
 
 
         # ====================================================
-        # PROBABILITIES
+        # PREDICTION LEVEL
         # ====================================================
 
-        st.write("")
+        st.markdown(
+            f"""
+            <div class="prediction-level">
+                <b>Prediction Level:</b>
+                {prediction_level}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+
+        # ====================================================
+        # PROBABILITY DETAILS
+        # ====================================================
 
         probability_col1, probability_col2 = st.columns(2)
 
@@ -624,6 +537,15 @@ if uploaded_file is not None:
                 "Deepfake Probability",
                 f"{probability_fake * 100:.2f}%"
             )
+
+
+        # ====================================================
+        # MODEL USED
+        # ====================================================
+
+        st.caption(
+            f"Model used: {selected_model}"
+        )
 
 
 # ============================================================
